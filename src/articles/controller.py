@@ -35,7 +35,7 @@ def list_articles(
         db: DbSession,
         author: Optional[str] = None,
         tag: Optional[str] = None,
-        order: ArticleOrder = ArticleOrder,
+        order: ArticleOrder = ArticleOrder.ASC,
         limit: int = 10,
         offset: int = 0):
     return service.list_articles(db, author, tag, order, limit, offset)

@@ -1,7 +1,10 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from datetime import datetime
 
-class Article(BaseModel):
+class OrmModel(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+class Article(OrmModel):
     id: int
     title: str
     body: str
