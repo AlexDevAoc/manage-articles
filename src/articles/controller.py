@@ -9,23 +9,22 @@ from ..auth.service import api_key_auth
 
 router = APIRouter(
     prefix="/articles",
-    tags=["Articles"],
-    dependencies=[Depends(api_key_auth)]
+    tags=["Articles"]
 )
 
-@router.post("", response_model=models.Article)
+@router.post("", response_model=models.Article, dependencies=[Depends(api_key_auth)])
 def create_article(db: DbSession, article: models.CreateArticle):
     return service.create_article(db, article)
 
-@router.get("/{id}", response_model=models.Article)
+@router.get("/{id}", response_model=models.Article, dependencies=[Depends(api_key_auth)])
 def get_article(db: DbSession, id: int):
     return service.get_article(db, id)
 
-@router.put("/{id}", response_model=models.Article)
+@router.put("/{id}", response_model=models.Article, dependencies=[Depends(api_key_auth)])
 def update_article(db: DbSession, id: int, article: models.UpdateArticle):
     return service.update_article(db, id, article)
 
-@router.delete("/{id}")
+@router.delete("/{id}", dependencies=[Depends(api_key_auth)])
 def delete_article(db: DbSession, id: int):
     return service.delete_article(db, id)
 
