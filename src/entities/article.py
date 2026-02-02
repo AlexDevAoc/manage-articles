@@ -1,10 +1,14 @@
+import os
 from sqlalchemy import Column, Integer, String, Text, DateTime, func, Index, UniqueConstraint
 from sqlalchemy.dialects.postgresql import ARRAY
 
 from ..database.core import Base
 
+target_schema = os.getenv("DATABASE_SCHEMA", "public")
+
 class Article(Base):
     __tablename__ = "articles"
+    __table_args__ = {'schema': target_schema}
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String(255), nullable=False)
@@ -18,4 +22,5 @@ class Article(Base):
     __table_args__ = (
         Index("idx_article_author_published_at", "author", "published_at"),
         UniqueConstraint("title", "author", name="uq_article_title_author"),
+        {'schema': target_schema}
     )
