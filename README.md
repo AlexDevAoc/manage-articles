@@ -40,6 +40,7 @@ The `.env` file contains the necessary environment variables for the database co
 ```properties
 # .env
 DATABASE_URL="postgresql://postgres:postgres@db:5432/articles_db"
+DATABASE_SCHEMA="articles"
 API_KEY="test"
 REDIS_URL="redis://redis:6379/0"
 ARTICLE_CACHE_TTL="120"
