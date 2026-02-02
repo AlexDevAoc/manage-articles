@@ -3,7 +3,7 @@ from fastapi import HTTPException
 
 
 class ArticleError(HTTPException):
-    """Base exception for todo-related errors"""
+    """Base exception for article errors"""
     pass
 
 class ArticleNotFoundError(ArticleError):
